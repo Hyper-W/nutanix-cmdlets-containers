@@ -1,0 +1,13 @@
+services:
+  nutanix-cli:
+    build:
+      context: .
+      args:
+        - PSVersionMajor=${PSVersionMajor:-7} # Powershell Major Version. Exclusive: PSVersion. Dependence: PSVersionMinor,PSVersionPatch.
+        - PSVersionMinor=${PSVersionMinor:-4} # Powershell Minor Version. Exclusive: PSVersion. Dependence: PSVersionMajor,PSVersionPatch.
+        - PSVersionPatch=${PSVersionPatch:-11} # Powershell Patch Version. Exclusive: PSVersion. Dependence: PSVersionMajor,PSVersionMinor.
+        # - PSVersion=${PSVersionMajor:-7}.${PSVersionMinor:-4}.${PSVersionPatch:-11} # Exclusive: PSVersionMajor,PSVersionMinor,PSVersionPatch.
+    image: ghcr.io/hyper-w/nutanix-cmdlets-containers/nutanix-cli:alpine
+    container_name: nutanix-cli
+    tty: true
+    entrypoint: ["pwsh"]
